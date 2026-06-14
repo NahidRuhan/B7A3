@@ -64,7 +64,7 @@ CREATE TABLE Bookings (
 -- =========================================================================
 INSERT INTO Users (user_id, full_name, email, role, phone_number) VALUES
 (1, 'Tanvir Rahman', 'tanvir@mail.com', 'Football Fan', '+8801711111111'),
-(2, 'Asif haque', 'asif@mail.com', 'Football Fan', '+8801722222222'),
+(2, 'Asif Haque', 'asif@mail.com', 'Football Fan', '+8801722222222'),
 (3, 'Sajjad Rahman', 'sajjad@mail.com', 'Ticket Manager', '+8801733333333'),
 (4, 'Jannat Ara', 'jannat@mail.com', 'Football Fan', NULL);
 
@@ -115,17 +115,8 @@ LEFT JOIN matches ON bookings.match_id=matches.match_id;
 
 
 -- Query 6: Find all ticket bookings where the total cost is strictly higher than the average cost of all ticket bookings
-SELECT booking_id,match_id,CAST(total_cost AS FLOAT) AS total_cost FROM bookings WHERE total_cost > (SELECT AVG(total_cost) FROM bookings)
+SELECT booking_id,match_id,CAST(total_cost AS FLOAT) AS total_cost FROM bookings WHERE total_cost > (SELECT AVG(total_cost) FROM bookings);
 
 
 -- Query 7: Retrieve the top 2 most expensive matches sorted by base ticket price, skipping the absolute highest premium match
-
-
-
-
-
-
-
-
-
-
+SELECT match_id,fixture,CAST(base_ticket_price AS FLOAT) AS base_ticket_price FROM matches ORDER BY base_ticket_price DESC LIMIT 2 OFFSET 1;
