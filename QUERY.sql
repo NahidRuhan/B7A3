@@ -108,5 +108,13 @@ JOIN users ON bookings.user_id=users.user_id
 JOIN matches ON bookings.match_id=matches.match_id;
 
 
+-- Query 5: Display a comprehensive list of all users and their booking IDs, ensuring that fans who have never bought a ticket are still listed
+SELECT users.user_id,full_name,booking_id FROM bookings
+FULL JOIN users ON bookings.user_id=users.user_id
+LEFT JOIN matches ON bookings.match_id=matches.match_id;
+
+
+
+
 
 
