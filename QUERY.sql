@@ -95,14 +95,17 @@ SELECT match_id,fixture,CAST(base_ticket_price AS FLOAT) AS base_ticket_price FR
 
 
 -- Query 2: Search for all users whose full names start with 'Tanvir' or contain the phrase 'Haque' (case-insensitive)
-SELECT user_id,full_name,email FROM users WHERE full_name ILIKE 'Tanvir%' OR full_name ILIKE '%Haque%'
+SELECT user_id,full_name,email FROM users WHERE full_name ILIKE 'Tanvir%' OR full_name ILIKE '%Haque%';
 
 
 -- Query 3: Retrieve all booking records where the payment status is missing (NULL), replacing the empty result with 'Action Required'
-SELECT booking_id,user_id,match_id,COALESCE(payment_status,'Action Required') FROM bookings WHERE payment_status IS NULL
+SELECT booking_id,user_id,match_id,COALESCE(payment_status,'Action Required') FROM bookings WHERE payment_status IS NULL;
 
 
-
+-- Query 4: Retrieve match booking details along with the User's full name and the scheduled Match fixture teams
+SELECT booking_id,full_name,fixture,CAST(total_cost AS FLOAT) AS total_cost FROM bookings
+JOIN users ON bookings.user_id=users.user_id
+JOIN matches ON bookings.match_id=matches.match_id;
 
 
 
